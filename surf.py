@@ -18,12 +18,11 @@ def scrape():
 	wave_height=wave_range.text
 	spot_conditions=soup.find('div',{'id': 'observed-spot-conditions'})
 	conditions=spot_conditions.text
-
-	if wave_height[:1]>=5:
+	if int(wave_height[:1])>=5:
 		return True, conditions, wave_height
 	if "good" in conditions:
 		return True, conditions, wave_height
-	if "fair" in conditions and wave_height[:1]>=3:
+	if ("fair" in conditions) and (int(wave_height[:1])>=3):
 		return True, conditions, wave_height
 	return False,conditions,wave_height
 			
@@ -33,22 +32,19 @@ def scrape():
 def send_message():
 	server = smtplib.SMTP( "smtp.gmail.com", 587 )
 	server.starttls()
-	server.login( 'sahopkins93@gmail.com', 'sourcecode1' )
+	server.login( <your email>, <password> )
+	go_surfing=False
 	go_surfing,conditions,wave_height=scrape()
 	conditions=conditions.replace("Conditions","")
-	message= "You should go surfing today. The conditions at Pleasure Point are "+ conditions+ "with a wave height of "+wave_height
-	print message
 	if go_surfing:
-		server.sendmail( 'Sam', '4083488366@mms.att.net', message)
-		server.sendmail( 'Sam', '6508230516@mms.att.net', message)
-		server.sendmail( 'Sam', '4083917642@mms.att.net', message)
-		server.sendmail( 'Sam', '4152798918@mms.att.net', message)
-		server.sendmail( 'Sam', '6502917670@mms.att.net', message)
+		server.sendmail( 'Sam', <your number>@mms.att.net, message)
+		server.sendmail( 'Sam', <a surfing buddys number>.att.net, message)
+		print message
 
-	print "Message sent"
+	
 
 def main():
-	job=sched.add_interval_job(send_message,hours=24,start_date='2014-11-11 10:00:00', args="")
+	job=sched.add_interval_job(send_message,hours=24,start_date='2014-12-11 10:00:00', args="")
 
 
 if __name__=="__main__":
