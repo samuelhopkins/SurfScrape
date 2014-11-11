@@ -33,14 +33,17 @@ def scrape():
 def send_message():
 	server = smtplib.SMTP( "smtp.gmail.com", 587 )
 	server.starttls()
-	server.login( <your email>, <password> )
+	server.login( 'sahopkins93@gmail.com', 'sourcecode1' )
 	go_surfing,conditions,wave_height=scrape()
 	conditions=conditions.replace("Conditions","")
 	message= "You should go surfing today. The conditions at Pleasure Point are "+ conditions+ "with a wave height of "+wave_height
 	print message
 	if go_surfing:
-		server.sendmail( 'Sam', <your number>.att.net, message)
-		server.sendmail( 'Sam', <a surfing buddys number>.att.net, message)
+		server.sendmail( 'Sam', '4083488366@mms.att.net', message)
+		server.sendmail( 'Sam', '6508230516@mms.att.net', message)
+		server.sendmail( 'Sam', '4083917642@mms.att.net', message)
+		server.sendmail( 'Sam', '4152798918@mms.att.net', message)
+		server.sendmail( 'Sam', '6502917670@mms.att.net', message)
 
 	print "Message sent"
 
