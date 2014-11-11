@@ -39,13 +39,13 @@ def send_message():
 	message= "You should go surfing today. The conditions at Pleasure Point are "+ conditions+ "with a wave height of "+wave_height
 	print message
 	if go_surfing:
-		server.sendmail( 'Sam', <your number>@mms.att.net, message)
-		server.sendmail( 'Sam', <a friends number>@mms.att.net, message)
+		server.sendmail( 'Sam', <your number>.att.net, message)
+		server.sendmail( 'Sam', <a surfing buddys number>.att.net, message)
 
 	print "Message sent"
 
 def main():
-	job=sched.add_interval_job(send_message,minutes=0.2,start_date='2014-11-11 10:00:00', args="")
+	job=sched.add_interval_job(send_message,hours=24,start_date='2014-11-11 10:00:00', args="")
 
 
 if __name__=="__main__":
